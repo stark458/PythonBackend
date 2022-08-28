@@ -27,6 +27,14 @@ class jsonRequestHandler(tornado.web.RequestHandler):
         content = op.read().splitlines()
         op.close()
         return self.write(json.dumps(content))
+    
+    #creating a post function
+    def post(self):
+        var = self.get_argument("animal")
+        f = open("list.txt",'a')
+        f.write(f"{var}\n")
+        f.close()
+        return self.write({"message":"posted animal"})
 
 if __name__ == '__main__':
     app = tornado.web.Application([
