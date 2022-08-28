@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animal List</title>
+</head>
+<body>
+    <label>Animals</label>
+    <select id = 'lstAnimals'></select>
+    <label>Add new animal</label><input type = 'text' id = 'txtAnimal'><button id = 'btnAdd'>Add animal</button>
+    <script>
+        const lstAnimals = document.getElementById('lstAnimals')
+        const addanimal = document.getElementById("btnAdd")
+        const textanimal = document.getElementById("txtAnimal")
+        fetch("http://localhost:8882/animals")
+        .then(response => response.json())
+        .then(jsonResponse => jsonResponse.forEach(animal => {
+            let o = document.createElement("option")
+            o.textContent = animal 
+            lstAnimals.appendChild(o)
+        }))
+        let ani = textanimal.value;
+        addanimal.addEventListener("click",e =>{
+            fetch('http://localhost:8882/animals?animal=${ani}', {"method" : "POST"})
+            .then(response => response.json())
+            .then(jsonResponse => alert("Animal Added successfully!!!!!"))
+        })
+    </script>
+</body>
+</html>

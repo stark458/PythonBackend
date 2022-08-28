@@ -4,3 +4,6 @@ cow
 buffalo
 snake
 owl
+${ani}
+${ani}
+$ani

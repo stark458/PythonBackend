@@ -9,7 +9,7 @@ import tornado.ioloop
 import json
 class basicRequestHandler(tornado.web.RequestHandler):
     def get(self):
-        return "Hello"
+        self.render('index.html')
 class resourceRequestHandler(tornado.web.RequestHandler):
     def get(self):
         num = self.get_argument("var")
